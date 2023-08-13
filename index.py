@@ -6,7 +6,13 @@ from cvlib.object_detection import draw_bbox
 from numpy.lib.polynomial import poly
 
 img = cv2.imread('GreenCards1.jpg')
-print(img)
-cv2.imshow('cards', img)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
+
+box, label, count = cv.detect_common_objects(img)
+output = draw_bbox(img, box, label, count)
+
+output = cv2.cvtColor(output,cv2.COLOR_BGR2RGB)
+
+plt.figure(figsize=(10,10))
+plt.axis('off')
+plt.imshow(output)
+plt.show()
